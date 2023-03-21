@@ -9,26 +9,46 @@
 
 <body>
 
-    <section class="container d-flex justify-content-center align-items-center text-light">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Full Name</label>
-                <input type="text" class="form-control" id="exampleInputName1">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 mt-5">
+                    <div class="register p-2">
+                        <h1 class="text-center">Sign up</h1>
+                        <form th:action="@{/do_register}" method="post">
+                            <div class="form-group">
+                                <label for="name">Full Name*</label>
+                                <input type="text" class="form-control" id="name" placeholder="your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input type="email" class="form-control" id="email" placeholder="your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password*</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="" class="form-control" rows="5" placeholder="Enter something about yourself"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between ">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="term-condition">
+                                    <label class="form-check-label" for="term-condition">Accept terms and conditions</label>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                                <!-- <button type="reset" class="btn btn-warning">Reset</button> -->
+                            </div>
+                            <div class="text-center mt-3">
+                                <p>Aready have an account? <a th:href="@{/signin}">Sign in here</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Accept terms and conditions</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign up</button>
-        </form>
+        </div>
     </section>
 
 </body>
