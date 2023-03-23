@@ -31,18 +31,6 @@ public class Contact {
         super();
     }
 
-    public Contact(String name, String nickName, String email, String phone, String work, String imageUrl,
-            String description) {
-        super();
-        this.name = name;
-        this.nickName = nickName;
-        this.email = email;
-        this.phone = phone;
-        this.work = work;
-        this.imageUrl = imageUrl;
-        this.description = description;
-    }
-
     public int getcId() {
         return cId;
     }

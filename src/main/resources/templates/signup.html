@@ -15,27 +15,26 @@
                 <div class="col-md-6 offset-md-3 mt-5">
                     <div class="register p-2">
                         <h1 class="text-center">Sign up</h1>
-                        <form th:action="@{/do_register}" method="post">
+                        <form novalidate action="#" th:action="@{/signup}" method="post" th:object="${user}">
                             <div class="form-group">
                                 <label for="name">Full Name*</label>
-                                <input type="text" class="form-control" id="name" placeholder="your name">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="your name" th:value="${user.name}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email*</label>
-                                <input type="email" class="form-control" id="email" placeholder="your email">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="your email" th:value="${user.email}">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password*</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" name="password" class="form-control" id="password">
                             </div>
                             <div class="form-group">
-                                <textarea name="" class="form-control" rows="5" placeholder="Enter something about yourself"></textarea>
+                                <label for="description">Description (Optional)</label>
+                                <textarea name="description" class="form-control" id="description" rows="5" th:text="${description}"></textarea>
                             </div>
-                            <div class="d-flex justify-content-between ">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="term-condition">
-                                    <label class="form-check-label" for="term-condition">Accept terms and conditions</label>
-                                </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" name="agreement" class="form-check-input" id="term-condition">
+                                <label class="form-check-label" for="term-condition">Accept agreement</label>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-block">Sign up</button>
