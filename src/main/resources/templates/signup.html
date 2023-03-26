@@ -29,7 +29,7 @@
                     <div class="card-body border-bottom">
                         <form novalidate action="#" th:action="@{/signup}" method="post" th:object="${userBean}">
                             <div class="form-group">
-                                <label for="name">Full Name *</label>
+                                <label for="name">Full Name</label>
                                 <input type="text" name="name"
                                     th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
                                     class="form-control" id="name" placeholder="your full name"
@@ -39,12 +39,12 @@
                                 <!-- <div class="invalid-feedback" th:if="${#fields.hasErrors()}" th:each="error : ${#fields.errors('name')}" th:text="${error}"></div> -->
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
+                                <label for="email">Email</label>
                                 <input type="email" name="email" class="form-control" id="email"
                                     placeholder="your email" th:value="${userBean.email}">
                             </div>
                             <div class="form-group">
-                                <label for="password">Password *</label>
+                                <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password">
                                 <p th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}">
                                 </p>
