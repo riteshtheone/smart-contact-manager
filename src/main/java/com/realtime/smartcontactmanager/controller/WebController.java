@@ -18,5 +18,10 @@ public class WebController {
         model.addAttribute("title", "About page -SmartContactManager");
         return "about";
     }
+
+    // @GetMapping("/logout")
+    // public String logout(){
+    //     return "index";
+    // }
     
 }

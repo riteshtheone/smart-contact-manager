@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.realtime.smartcontactmanager.bean.UserBean;
 import com.realtime.smartcontactmanager.dao.UserRepository;
-import com.realtime.smartcontactmanager.entity.User;
+import com.realtime.smartcontactmanager.entity.UserEntity;
 import com.realtime.smartcontactmanager.helper.Config;
 
 import jakarta.servlet.http.HttpSession;
@@ -41,8 +41,8 @@ public class SignUpController {
             if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");
             else if (userRepository.findByEmail(userBean.getEmail()).isPresent()) throw new Exception("email already exist");
             else if (bindingResult.hasErrors()) throw new Exception("bad credientials");
-            var user = new User(userBean.getName(), userBean.getEmail(), passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
-            var responce = userRepository.save(user);
+            var userEntity = new UserEntity(userBean.getName(), userBean.getEmail(), passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
+            var responce = userRepository.save(userEntity);
             System.out.println(responce);
             session.setAttribute("message", new Config("Registerd successfully!!!", "alert-success"));
             model.addAttribute("userBean", new UserBean());
