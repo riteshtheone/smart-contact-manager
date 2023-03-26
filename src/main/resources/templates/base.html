@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="layout(content)">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -16,7 +16,7 @@
 <body>
 
     <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark mx-5 pt-3">
+    <nav class="navbar navbar-expand-lg navbar-light px-5" style="background-color: #cfebff;">
         <a class="navbar-brand" href="#" th:href="@{/}">Smart Contact Manager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
                     <a class="nav-link" th:href="@{/signin}">Sign in</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="btn btn-outline-light" th:href="@{/signup}">Sign up</a>
+                    <a class="btn btn-outline-dark my-2 my-sm-0" th:href="@{/signup}">Sign up</a>
                 </li>
             </ul>
         </div>

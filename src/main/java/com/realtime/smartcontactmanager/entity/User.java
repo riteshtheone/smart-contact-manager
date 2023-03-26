@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,27 +14,49 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
+
+    //  Attributes ------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private String name;
+    @Column(unique = true ,nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(length = 500)
     private String description;
     private boolean agreement;
-    private String role;
+    private String roles;
     private String imageUrl;
-    private boolean blocked;
+    private boolean enabled;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Contact> contacts = new ArrayList<Contact>();
 
+    //  Constructers ----------------
+
     public User() {
         super();
     }
+
+    public User(String name, String email, String password, String description) {
+        super();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.description = description;
+        this.agreement = true;
+        this.roles = "USER";
+        this.imageUrl = "default.png";
+        this.enabled = true;
+    }
+
+    //  Getters and Setters --------------
 
     public int getId() {
         return id;
@@ -83,12 +106,12 @@ public class User {
         this.agreement = agreement;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getImageUrl() {
@@ -99,12 +122,12 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-    public boolean isBlocked() {
-        return blocked;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Contact> getContacts() {
@@ -115,11 +138,13 @@ public class User {
         this.contacts = contacts;
     }
 
+    // to String method -------------
+
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", description="
-                + description + ", agreement=" + agreement + ", role=" + role + ", imageUrl="
-                + imageUrl + ", blocked=" + blocked + ", contacts=" + contacts + "]";
+                + description + ", agreement=" + agreement + ", roles=" + roles + ", imageUrl="
+                + imageUrl + ", enabled=" + enabled + ", contacts=" + contacts + "]";
     }
 
 }

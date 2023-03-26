@@ -1,45 +1,57 @@
 package com.realtime.smartcontactmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.realtime.smartcontactmanager.bean.UserBean;
 import com.realtime.smartcontactmanager.dao.UserRepository;
 import com.realtime.smartcontactmanager.entity.User;
+import com.realtime.smartcontactmanager.helper.Config;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/signup")
 public class SignUpController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public String signUp(Model model){
         model.addAttribute("title", "Sign up -SmartContactManager");
-        model.addAttribute("user", new User());
+        model.addAttribute("userBean", new UserBean());
         return "signup";
     }
     
     @PostMapping
-    public String doSignUp(@ModelAttribute("user") User user, Model model){
-        if (!user.isAgreement()) {
-            return "signup";
-        }
+    public String doSignUp(@Valid @ModelAttribute("userBean") UserBean userBean,BindingResult bindingResult, Model model, HttpSession session){
         try {
-            user.setRole("user");
+            if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");
+            else if (userRepository.findByEmail(userBean.getEmail()).isPresent()) throw new Exception("email already exist");
+            else if (bindingResult.hasErrors()) throw new Exception("bad credientials");
+            var user = new User(userBean.getName(), userBean.getEmail(), passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
             var responce = userRepository.save(user);
             System.out.println(responce);
+            session.setAttribute("message", new Config("Registerd successfully!!!", "alert-success"));
+            model.addAttribute("userBean", new UserBean());
+            return "signup";
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e);
+            session.setAttribute("message", new Config(e.getMessage(), "alert-danger"));
             return "signup";
         }
-        return "signin";
     }
-
     
 }

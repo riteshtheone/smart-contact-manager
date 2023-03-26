@@ -18,10 +18,5 @@ public class WebController {
         model.addAttribute("title", "About page -SmartContactManager");
         return "about";
     }
-
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    } 
     
 }
