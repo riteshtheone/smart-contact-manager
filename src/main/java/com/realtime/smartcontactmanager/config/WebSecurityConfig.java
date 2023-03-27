@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +18,7 @@ import com.realtime.smartcontactmanager.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-// @EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {     // this is the configuration of security in which who can access which url and who cannot
     
     @Autowired 
@@ -48,7 +49,7 @@ public class WebSecurityConfig {     // this is the configuration of security in
      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                // .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasRole("USER")
                 .requestMatchers("/**").permitAll())
             .formLogin(form -> form

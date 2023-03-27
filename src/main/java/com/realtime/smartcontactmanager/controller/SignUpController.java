@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.realtime.smartcontactmanager.bean.UserBean;
 import com.realtime.smartcontactmanager.dao.UserRepository;
@@ -19,7 +18,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/signup")
 public class SignUpController {
 
     @Autowired
@@ -28,14 +26,31 @@ public class SignUpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping
+    private int temp = 0;
+
+    @GetMapping("/")
+    public String home(Model model){
+        System.out.print(temp + " ");
+        if(temp++ == 0){
+            var user1 = new UserEntity("Ritesh Kumar", "a", passwordEncoder.encode("1111"), "nothing");
+            user1.setRoles("ADMIN");
+		    var user2 = new UserEntity("Ankit Kumar", "b", passwordEncoder.encode("1111"), "nothing");
+            user2.setRoles("USER");
+		    userRepository.save(user1);
+		    userRepository.save(user2);
+        }
+        model.addAttribute("title", "Home page -SmartContactManager");
+        return "home";
+    }
+
+    @GetMapping("/signup")
     public String signUp(Model model){
         model.addAttribute("title", "Sign up -SmartContactManager");
         model.addAttribute("userBean", new UserBean());
         return "signup";
     }
     
-    @PostMapping
+    @PostMapping("/signup")
     public String doSignUp(@Valid @ModelAttribute("userBean") UserBean userBean,BindingResult bindingResult, Model model, HttpSession session){
         try {
             if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");

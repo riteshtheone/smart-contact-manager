@@ -12,7 +12,7 @@ public class UserBean {
     private String name;
     // @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
     private String email;
-    @Size(min = 6, message = "your password is too short")
+    @Size(min = 4, message = "your password is too short")
     private String password;
     private String description;
     private boolean agreement;
