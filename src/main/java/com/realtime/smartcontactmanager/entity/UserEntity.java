@@ -35,7 +35,7 @@ public class UserEntity {
     private String imageUrl;
     private boolean enabled;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<ContactEntity> contacts = new ArrayList<ContactEntity>();
 
     //  Constructers ----------------

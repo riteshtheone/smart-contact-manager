@@ -14,7 +14,7 @@ public class ContactEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cId;
+    private int cid;
     private String name;
     private String nickName;
     private String email;
@@ -32,11 +32,11 @@ public class ContactEntity {
     }
 
     public int getcId() {
-        return cId;
+        return cid;
     }
 
-    public void setcId(int cId) {
-        this.cId = cId;
+    public void setcId(int cid) {
+        this.cid = cid;
     }
 
     public String getName() {
@@ -105,7 +105,7 @@ public class ContactEntity {
 
     @Override
     public String toString() {
-        return "Contact [cId=" + cId + ", name=" + name + ", nickName=" + nickName + ", email=" + email + ", phone="
+        return "Contact [cid=" + cid + ", name=" + name + ", nickName=" + nickName + ", email=" + email + ", phone="
                 + phone + ", work=" + work + ", imageUrl=" + imageUrl + ", description=" + description + "]";
     }
 

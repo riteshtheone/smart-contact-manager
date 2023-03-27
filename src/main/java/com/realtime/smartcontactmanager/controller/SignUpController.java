@@ -39,7 +39,7 @@ public class SignUpController {
     public String doSignUp(@Valid @ModelAttribute("userBean") UserBean userBean,BindingResult bindingResult, Model model, HttpSession session){
         try {
             if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");
-            else if (userRepository.findByEmail(userBean.getEmail()).isPresent()) throw new Exception("email already exist");
+            else if (userRepository.findUserByEmail(userBean.getEmail()) != null) throw new Exception("email already exist");
             else if (bindingResult.hasErrors()) throw new Exception("bad credientials");
             var userEntity = new UserEntity(userBean.getName(), userBean.getEmail(), passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
             var responce = userRepository.save(userEntity);

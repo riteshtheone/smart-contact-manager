@@ -1,8 +1,7 @@
 package com.realtime.smartcontactmanager.config;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.HashSet;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,15 +13,18 @@ public class CustomUserDetails implements UserDetails {
 
     private UserEntity user;
 
-    public CustomUserDetails(UserEntity user) {
+    public CustomUserDetails(UserEntity user) { 
         super();
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        var simpleGrantedAuthorities = Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-        return simpleGrantedAuthorities;
+        // var simpleGrantedAuthorities = Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+
+        var set = new HashSet<SimpleGrantedAuthority>();
+        set.add(new SimpleGrantedAuthority("ROLE_" + this.user.getRoles()));
+        return set;
     }
 
     @Override
