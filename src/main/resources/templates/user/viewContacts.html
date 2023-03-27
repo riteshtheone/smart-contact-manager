@@ -27,7 +27,7 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <title>user_dashboard</title>
+    <title>view_contacts</title>
 </head>
 
 <body style="background-color: #cfebff2e;">
@@ -39,7 +39,7 @@
             data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <label class="text-light ml-5">Dashboard</label>
+        <label class="text-light ml-5">View Contact</label>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-5">
                 <li class="nav-item active">
@@ -74,13 +74,13 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column ml-4">
                         <li class="nav-item ">
-                            <a class="nav-link active" href="#" th:href="@{/user/dashboard}">
+                            <a class="nav-link" href="#" th:href="@{/user/dashboard}">
                                 <span data-feather="home"></span>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" th:href="@{/user/viewContacts}">
+                            <a class="nav-link active" href="#" th:href="@{/user/viewContacts}">
                                 <span data-feather="file"></span>
                                 View Contacts
                             </a>
@@ -90,6 +90,7 @@
                                 <span data-feather="shopping-cart"></span>
                                 Add Contact
                             </a>
+                        </li>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -122,7 +123,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                    <h1 class="h2">View Contacts</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>

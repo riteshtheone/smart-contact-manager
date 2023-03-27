@@ -17,8 +17,8 @@ public class ContactEntity {
     private int cid;
     private String name;
     private String nickName;
-    private String email;
     private String phone;
+    private String email;
     private String work;
     private String imageUrl;
     @Column(length = 5000)
@@ -54,6 +54,14 @@ public class ContactEntity {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+    
+    public String getPhone() {
+        return phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getEmail() {
         return email;
@@ -62,15 +70,7 @@ public class ContactEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    
     public String getWork() {
         return work;
     }
@@ -105,8 +105,9 @@ public class ContactEntity {
 
     @Override
     public String toString() {
-        return "Contact [cid=" + cid + ", name=" + name + ", nickName=" + nickName + ", email=" + email + ", phone="
-                + phone + ", work=" + work + ", imageUrl=" + imageUrl + ", description=" + description + "]";
+        return "ContactEntity [cid=" + cid + ", name=" + name + ", nickName=" + nickName + ", phone=" + phone
+                + ", email=" + email + ", work=" + work + ", imageUrl=" + imageUrl + ", description=" + description
+                + ", user=" + user + "]";
     }
 
 }

@@ -17,17 +17,17 @@
             -ms-user-select: none;
             user-select: none;
         }
-        
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
         }
-        </style>
+    </style>
     <!-- Custom styles for this template -->
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <title>user_dashboard</title>
+    <title>add_contact</title>
 </head>
 
 <body style="background-color: #cfebff2e;">
@@ -39,7 +39,7 @@
             data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <label class="text-light ml-5">Dashboard</label>
+        <label class="text-light ml-5">Add Contact</label>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-5">
                 <li class="nav-item active">
@@ -74,7 +74,7 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column ml-4">
                         <li class="nav-item ">
-                            <a class="nav-link active" href="#" th:href="@{/user/dashboard}">
+                            <a class="nav-link" href="#" th:href="@{/user/dashboard}">
                                 <span data-feather="home"></span>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" th:href="@{/user/addContact}">
+                            <a class="nav-link active" href="#" th:href="@{/user/addContact}">
                                 <span data-feather="shopping-cart"></span>
                                 Add Contact
                             </a>
@@ -112,17 +112,17 @@
                         </li>
                         <div class="dropdown-divider"></div>
                     </ul>
-                    </div>
+                </div>
             </nav>
-    <!------------------------------------------------------------------------------end side bar---------------------------------------------------------------------->
+            <!------------------------------------------------------------------------------end side bar---------------------------------------------------------------------->
 
-    <!------------------------------------------------------------------------------body dashboard--------------------------------------------------------------------->
+            <!------------------------------------------------------------------------------body header--------------------------------------------------------------------->
 
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                    <h1 class="h2">Add Contact</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -135,44 +135,40 @@
                     </div>
                 </div>
 
-                <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+            <!------------------------------------------------------------------------------end body header--------------------------------------------------------------------->
+            <!------------------------------------------------------------------------------ body --------------------------------------------------------------------->
 
-                <h2>Section title</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="container card-body">
+                    <form action="#" th:action="@{/user/addContact}" method="post" th:object="${contact}">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickName">Nick name</label>
+                            <input type="text" name="nickName" class="form-control" id="nickName">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone number</label>
+                            <input type="number" name="phone" class="form-control" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="work">Work</label>
+                            <input type="text" name="work" class="form-control" id="work">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-block" style="background-color: #cfebff;">Add now</button>
+                            <!-- <button type="reset" class="btn btn-warning">Reset</button> -->
+                        </div>
+                    </form>
                 </div>
             </main>
         </div>

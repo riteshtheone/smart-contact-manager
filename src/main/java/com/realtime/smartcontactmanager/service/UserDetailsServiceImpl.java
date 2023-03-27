@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.realtime.smartcontactmanager.config.CustomUserDetails;
 import com.realtime.smartcontactmanager.dao.UserRepository;
-import com.realtime.smartcontactmanager.entity.UserEntity;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -18,10 +17,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = this.userRepository.findUserByEmail(email);
-        if(user != null) System.out.println(user);
-        if (user == null) throw new UsernameNotFoundException("user not found" + email);
-        return new CustomUserDetails(user);
+        var user = this.userRepository.findUserByEmail(email);
+        if(user.isPresent()) System.out.println(user);
+        if (user.isEmpty()) throw new UsernameNotFoundException("user not found" + email);
+        return new CustomUserDetails(user.get());
     }
     
 }

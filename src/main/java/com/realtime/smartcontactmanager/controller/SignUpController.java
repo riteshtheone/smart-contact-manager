@@ -26,15 +26,15 @@ public class SignUpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private int temp = 0;
+    private int temp = 1;
 
     @GetMapping("/")
     public String home(Model model){
         System.out.print(temp + " ");
         if(temp++ == 0){
-            var user1 = new UserEntity("Ritesh Kumar", "a", passwordEncoder.encode("1111"), "nothing");
+            var user1 = new UserEntity("Admin", "a", passwordEncoder.encode("a"), "nothing");
             user1.setRoles("ADMIN");
-		    var user2 = new UserEntity("Ankit Kumar", "b", passwordEncoder.encode("1111"), "nothing");
+		    var user2 = new UserEntity("User", "u", passwordEncoder.encode("u"), "nothing");
             user2.setRoles("USER");
 		    userRepository.save(user1);
 		    userRepository.save(user2);
@@ -54,10 +54,10 @@ public class SignUpController {
     public String doSignUp(@Valid @ModelAttribute("userBean") UserBean userBean,BindingResult bindingResult, Model model, HttpSession session){
         try {
             if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");
-            else if (userRepository.findUserByEmail(userBean.getEmail()) != null) throw new Exception("email already exist");
+            else if (this.userRepository.findUserByEmail(userBean.getEmail()).isPresent()) throw new Exception("email already exist");
             else if (bindingResult.hasErrors()) throw new Exception("bad credientials");
-            var userEntity = new UserEntity(userBean.getName(), userBean.getEmail(), passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
-            var responce = userRepository.save(userEntity);
+            var userEntity = new UserEntity(userBean.getName(), userBean.getEmail(), this.passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
+            var responce = this.userRepository.save(userEntity);
             System.out.println(responce);
             session.setAttribute("message", new Config("Registerd successfully!!!", "alert-success"));
             model.addAttribute("userBean", new UserBean());

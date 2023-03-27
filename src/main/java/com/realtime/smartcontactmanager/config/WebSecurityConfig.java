@@ -40,7 +40,7 @@ public class WebSecurityConfig {     // this is the configuration of security in
     @Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.setUserDetailsService(userDetailsServiceImpl);
+		authenticationProvider.setUserDetailsService(this.getUserDetailsService());
 		authenticationProvider.setPasswordEncoder(this.passwordEncoder());
 		return authenticationProvider;
 	}
@@ -50,13 +50,13 @@ public class WebSecurityConfig {     // this is the configuration of security in
         http
             .authorizeHttpRequests(authorize -> authorize
                 // .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/user/**").hasRole("USER")
+                // .requestMatchers("/user/**").hasRole("USER")
                 .requestMatchers("/**").permitAll())
             .formLogin(form -> form
                 .loginPage("/signin")
                 .loginProcessingUrl("/signin")
-                .defaultSuccessUrl("/success"))
-            .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/logoutSuccess"))
+                .defaultSuccessUrl("/user"))
+            .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).logoutSuccessUrl("/"))
 		    .exceptionHandling(access -> access.accessDeniedPage("/accessDenied"))
             .authenticationProvider(authenticationProvider());
         return http.build();

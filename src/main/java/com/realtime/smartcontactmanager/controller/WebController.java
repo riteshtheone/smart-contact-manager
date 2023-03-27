@@ -18,10 +18,10 @@ public class WebController {
         return "success";
     }
 
-    @GetMapping("/logout")
-    public String logout(){
-        return "logout";
-    }
+    // @PostMapping("/logout")
+    // public String logout(){
+    //     return "/";
+    // }
 
     @GetMapping("/login")
     public String login(){
