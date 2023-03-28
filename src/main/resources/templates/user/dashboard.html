@@ -30,41 +30,10 @@
     <title>user_dashboard</title>
 </head>
 
-<body style="background-color: #cfebff2e;">
+<body style="background-color: #cfebff2e; font-size: 1rem!important;">
 
     <!-------------------------------------------------------------------------nav bar------------------------------------------------------------------------------>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 pl-4" href="#" th:href="@{/user}">Smart Contact Manager</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <label class="text-light ml-5">Dashboard</label>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mr-5">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/user}">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/user/about}">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        user
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Name</a>
-                        <a class="dropdown-item" href="#">Email</a>
-                        <div class="dropdown-divider"></div>
-                        <form th:action="@{/user/logout}" method="post">
-                            <button type="submit" class="dropdown-item">logout</a>
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <section th:insert="~{base.html :: navbar}"></section>
     <!------------------------------------------------------------------------------end nav bar---------------------------------------------------------------------->
 
     <!------------------------------------------------------------------------------side bar---------------------------------------------------------------------->
@@ -99,7 +68,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
+                                <span data-feather="settings"></span>
                                 Settings
                             </a>
                         </li>
@@ -114,9 +83,9 @@
                     </ul>
                     </div>
             </nav>
-    <!------------------------------------------------------------------------------end side bar---------------------------------------------------------------------->
+            <!------------------------------------------------------------------------------end side bar---------------------------------------------------------------------->
 
-    <!------------------------------------------------------------------------------body dashboard--------------------------------------------------------------------->
+            <!------------------------------------------------------------------------------body dashboard--------------------------------------------------------------------->
 
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">

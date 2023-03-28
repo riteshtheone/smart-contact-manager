@@ -18,13 +18,15 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div role="alert" th:if="${session.message}" class="alert pb-0 pt-3 mb-0"
-                        th:classappend="${session.message.type} + ' border-bottom'">
-                        <p class="text-center" th:text="${session.message.message}"></p>
-                        <!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
-                    </div>
+                    
                     <div class="card-body border-bottom" style="background-color: #cfebff2e;">
                         <h1 class="text-center">Sign up</h1>
+                    </div>
+                    <div role="alert" th:if="${session.message}" class="alert m-0 p-0">
+                        <div th:classappend="${session.message.type}" class="alert text-center m-0 p-0">
+                            <span th:text="${session.message.message}"></span>
+                        </div>
+                        <!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
                     </div>
                     <div class="card-body border-bottom">
                         <form novalidate action="#" th:action="@{/signup}" method="post" th:object="${userBean}">

@@ -44,8 +44,9 @@ public class SignUpController {
     }
 
     @GetMapping("/signup")
-    public String signUp(Model model){
+    public String signUp(Model model, HttpSession session){
         model.addAttribute("title", "Sign up -SmartContactManager");
+        session.removeAttribute("message");
         model.addAttribute("userBean", new UserBean());
         return "signup";
     }
