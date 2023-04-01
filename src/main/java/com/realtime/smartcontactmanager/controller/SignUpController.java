@@ -56,15 +56,15 @@ public class SignUpController {
         try {
             if (!userBean.isAgreement()) throw new Exception("you have not accepted the terms and conditions");
             else if (this.userRepository.findUserByEmail(userBean.getEmail()).isPresent()) throw new Exception("email already exist");
-            else if (bindingResult.hasErrors()) throw new Exception("bad credientials");
+            else if (bindingResult.hasErrors()) throw new Exception("bad credential");
             var userEntity = new UserEntity(userBean.getName(), userBean.getEmail(), this.passwordEncoder.encode(userBean.getPassword()), userBean.getDescription());
             var responce = this.userRepository.save(userEntity);
             System.out.println(responce);
-            session.setAttribute("message", new Config("Registerd successfully!!!", "alert-success"));
+            session.setAttribute("message", new Config("Registered successfully!!!", "alert-success"));
             model.addAttribute("userBean", new UserBean());
             return "signup";
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
             session.setAttribute("message", new Config(e.getMessage(), "alert-danger"));
             return "signup";
         }

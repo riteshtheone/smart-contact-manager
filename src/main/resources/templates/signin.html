@@ -24,7 +24,7 @@
                     </div>
                     <div th:if="${param.error}" class="alert alert-danger m-0 p-0 text-center" role="alert">Bad credentials</div>
                     <div class="card-body">
-                        <form novalidate action="#" th:action="@{/signin}" method="post">
+                        <form novalidate action="#" th:action="@{/signin}" method="post" th:object="${user}">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" name="username" class="form-control" id="email"
